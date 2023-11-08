@@ -23,12 +23,12 @@ class ExampleFragment : Fragment() {
         }
     }
 
-    private var pageText: String? = null
+    private var pageText: String = "Empty"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            pageText = requireArguments().getString(ARG_PAGE_TEXT)
+            pageText = requireArguments().getString(ARG_PAGE_TEXT) ?: "Null"
         }
 
         Log.i("ExampleFragment", "onCreate: pageText = $pageText")

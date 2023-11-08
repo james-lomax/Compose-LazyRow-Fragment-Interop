@@ -22,14 +22,14 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-internal fun Pages() {
+internal fun Pages(modifier: Modifier, content: @Composable (String) -> Unit) {
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     val cardWidth = screenWidth - 48.dp
 
     val state = rememberLazyListState()
 
     LazyRow(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize(),
         state = state,
         flingBehavior = rememberSnapFlingBehavior(lazyListState = state)
     ) {
@@ -47,7 +47,7 @@ internal fun Pages() {
                         .fillMaxSize()
                         .background(color = Color.Gray)
                 ) {
-                    FragmentWrapper(text = "Page $it")
+                    content("Page $it")
                 }
             }
         }

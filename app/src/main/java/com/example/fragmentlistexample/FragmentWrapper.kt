@@ -28,10 +28,7 @@ fun FragmentWrapper(text: String) {
         val containerId = remember { View.generateViewId() }
 
         AndroidView(
-            modifier = Modifier
-                .fillMaxSize()
-                .shadow(elevation = 20.dp)
-                .clip(RoundedCornerShape(8.dp)),
+            modifier = Modifier.fillMaxSize().shadow(elevation = 20.dp),
             factory = { context ->
                 fragmentManager.findFragmentById(containerId)?.view
                     ?.also { (it.parent as? ViewGroup)?.removeView(it) }

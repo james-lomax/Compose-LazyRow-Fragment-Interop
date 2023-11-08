@@ -3,6 +3,7 @@ package com.example.fragmentlistexample
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -18,30 +19,22 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             FragmentListExampleTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Pages()
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        Text("With AndroidView:")
+                        Pages(modifier = Modifier.weight(1f)) {
+                            FragmentWrapper(text = it)
+                        }
+                        Text("With AndroidViewBinding:")
+                        Pages(modifier = Modifier.weight(1f)) {
+                            LayoutFragmentWrapper(text = it)
+                        }
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FragmentListExampleTheme {
-        Greeting("Android")
     }
 }
